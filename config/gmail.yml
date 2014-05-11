@@ -1,0 +1,53 @@
+shared: &shared
+
+  # Number of past days for which emails will be fetched
+  fetching_timelimit: '14.days'
+  asst_notification_max_frequency: '1.minutes'
+
+  # Querying
+  exists_attr: 'EXISTS'
+  message_attr: 'MESSAGES'
+  envelope_attr: 'ENVELOPE'
+  flags_attr: 'FLAGS'
+  message_id_attr: 'MESSAGE_ID'
+  gm_msgid_attr: 'X-GM-MSGID'
+  gm_thrid_attr: 'X-GM-THRID'
+  gm_label_attr: 'X-GM-LABELS'
+  gm_raw_attr: 'X-GM-RAW'
+  rfc822_attr: 'RFC822'
+  uid_attr: 'UID'
+  gm_rfc822msgid_attr: 'rfc822msgid:'
+  message_id_field: 'BODY[HEADER.FIELDS (MESSAGE-ID)]'
+  body_plain: 'BODY[1.1]' # 1.1 is text/plain
+  body_html: 'BODY[1.2]' # 1.2 is text/html
+
+  # Flags, labels and folders
+  seen_flag: :Seen
+  starred_flag: :Flagged
+  gm_inbox_folder: :Inbox
+  gm_priority_folder: :Important
+  gm_drafts_label: 'draft'
+
+  # Server connection
+  gm_imap_server: 'imap.gmail.com'
+  gm_imap_port: '993'
+  ssl_enabled: true
+
+  # Delivery Status Notifications
+  gm_dsn_from: 'mailer-daemon@googlemail.com'
+  gm_dsn_subject: 'Delivery Status Notification'
+  gm_dfn_subject: 'Delivery Status Notification (Failure)'
+  gm_ddn_subject: 'Delivery Status Notification (Delay)'
+  gm_dfn_recipients: 'X-Failed-Recipients'
+
+development:
+  fetch_number: 100
+  <<: *shared
+
+test:
+  fetch_number: 10
+  <<: *shared
+
+production:
+  fetch_number: 100
+  <<: *shared

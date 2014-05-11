@@ -1,0 +1,3 @@
+class ContactSyncReportNotification < ErrorNotification
+
+end

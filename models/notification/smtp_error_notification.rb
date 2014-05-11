@@ -1,0 +1,3 @@
+class SMTPErrorNotification < ErrorNotification
+
+end
